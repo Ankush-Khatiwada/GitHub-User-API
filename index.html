@@ -4,22 +4,29 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+	<link rel="stylesheet" href="style.css">
+	<title>Ankush Khatiwada Portfolio</title>
 </head>
-<body>
+<body style="text-align: center;" >
+	<div id="loading" >
+		loading................
+	</div>
 
-	<div class="main">
+	<div class="main" id="mainContainer" hidden>
 		<img  id="profile">
+		<span class="online"></span>
 		<h2 id="fullname"></h2>
 		<p id="bio"></p>
 		<h5 id="followers"></h5>
 		<p>
-			check me on : <a href="" id="link">Link</a>
+			check me on : <a id="link" target="_blank">Link</a>
 		</p>
 	</div>
 
 </body>
 <script>
+
+/*Java Script to fetch github user api*/
 
 fetch("https://api.github.com/users/Ankush-Khatiwada")
 .then(response=> response.json())
@@ -27,11 +34,17 @@ fetch("https://api.github.com/users/Ankush-Khatiwada")
 
 
 	console.log(data)
+	let followersCount=data['followers']
+	let followersInfo=`I have been followed by ${followersCount} people on GitHub`
 
-	document.getElementById('profile').src=data('avatar_url'),
-	document.getElementById('fullname').textContent=data('login')
-	document.getElementById('bio').textContent = data('bio')
-	document.getElementById('followers').textContent = data('login')
+
+	document.getElementById('profile').src=data['avatar_url'],
+	document.getElementById('fullname').textContent=data['login']
+	document.getElementById('bio').textContent = data['bio']
+	document.getElementById('followers').textContent = followersInfo
+	document.getElementById('link').href=data['html_url']
+	document.getElementById('mainContainer').hidden=false
+	document.getElementById('loading').hidden=true
 
 
 })
