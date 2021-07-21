@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+
+	<div class="main">
+		<img  id="profile">
+		<h2 id="fullname"></h2>
+		<p id="bio"></p>
+		<h5 id="followers"></h5>
+		<p>
+			check me on : <a href="" id="link">Link</a>
+		</p>
+	</div>
+
+</body>
+<script>
+
+fetch("https://api.github.com/users/Ankush-Khatiwada")
+.then(response=> response.json())
+.then(function (data){
+
+
+	console.log(data)
+
+	document.getElementById('profile').src=data('avatar_url'),
+	document.getElementById('fullname').textContent=data('login')
+	document.getElementById('bio').textContent = data('bio')
+	document.getElementById('followers').textContent = data('login')
+
+
+})
+
+	
+
+
+</script>
+</html>
